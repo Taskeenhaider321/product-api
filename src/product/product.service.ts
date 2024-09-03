@@ -65,7 +65,6 @@ export class ProductService {
     }
   }
 
-  
   // This function find the product by Id from the database
   async findById(id: string): Promise<Product> {
     try {
@@ -86,6 +85,11 @@ export class ProductService {
   // This function update the product by Id in the database
   async updateById(id: string, updateProductDto: UpdateProductDto): Promise<Product> {
     try {
+
+      if (!mongoose.isValidObjectId(id)) {
+        throw new NotFoundException('Invalid product ID.');
+      }
+
       if (!id) {
         throw new NotFoundException('Product not found.');
       }
@@ -118,7 +122,6 @@ export class ProductService {
     }
   }
   
-
   // This function delete the product by Id from the databse
   async deleteById(id: string): Promise<Product> {
     try {

@@ -93,10 +93,12 @@ export class AuthService {
   // This function delete user by Id from the database
   async deleteUser(userId: string): Promise<{ message: string; User: SignUpAuthDto }> {
     try {
-      const user = await this.userModel.findByIdAndDelete(userId);
 
-      console.log(user);
-      
+      if (!mongoose.isValidObjectId(userId)) {
+        throw new NotFoundException('Invalid User ID.');
+      }
+
+      const user = await this.userModel.findByIdAndDelete(userId);   
 
       if (!user) {
         throw new NotFoundException('User not found');

@@ -1,34 +1,29 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {Category} from '../schemas/book.schema';
+import { Category } from '../schemas/product.schema';
 import { IsNotEmpty, IsString, IsNumber, IsEnum } from 'class-validator';
 import { User } from '../../auth/schema/auth.schema';
 
-export class CreateBookDto{
+export class CreateProductDto {
 
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    readonly title: string;
+    name: string;
 
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    readonly description: string;
-
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    readonly author: string;
+    description: string;
 
     @ApiProperty()
     @IsNotEmpty()
     @IsNumber()
-    readonly price: number;
+    price: number;
 
     @ApiProperty()
     @IsNotEmpty()
-    @IsEnum(Category, {message: "Please enter correct category."})
-    readonly category: Category;
+    @IsEnum(Category, { message: "Please enter correct category." })
+    category: Category;
 
-    user:User
+    user: User
 }

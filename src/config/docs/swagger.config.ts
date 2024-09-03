@@ -1,10 +1,10 @@
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 export class SwaggerConfig {
-  static config(app:any) {
+  static config(app) {
     const config = new DocumentBuilder()
-      .setTitle('NestJS Chat App API')
-      .setDescription('NestJS Chat App API')
+      .setTitle('NestJS Product API')
+      .setDescription('NestJS Product API CRUD Operation Evaluation Exercises')
       .setVersion('1.0')
       .addBearerAuth({
         type: 'http',
@@ -15,7 +15,7 @@ export class SwaggerConfig {
 
     const document = SwaggerModule.createDocument(app, config);
 
-    SwaggerModule.setup('docs', app, document, {
+    SwaggerModule.setup('api', app, document, {
         customJs: [
           'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
